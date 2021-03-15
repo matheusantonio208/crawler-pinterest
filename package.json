@@ -1,0 +1,16 @@
+{
+  "name": "crawlerref",
+  "version": "1.0.0",
+  "description": "crawler to download refs in pinterest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "puppeteer": "^8.0.0",
+    "request": "^2.88.2"
+  }
+}
