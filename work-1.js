@@ -6,8 +6,8 @@ var crypto = require('crypto');
 
 const puppeteer = require('puppeteer');
 
-const email = '';
-const password = '';
+const email = 'matheus.antonio208@gmail.com';
+const password = 'Geniodanet1!';
 const linkBoardToDownload = 'https://br.pinterest.com/matheusantoni0/profissional-artesanato/in-queue/';
 
 async function startWithLogin(page) {
@@ -24,7 +24,7 @@ async function startWithLogin(page) {
 }
 
 (async () => {
-  const browser = await puppeteer.launch({headless: true});
+  const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   
   await startWithLogin(page);
@@ -43,12 +43,15 @@ async function startWithLogin(page) {
   });
 
   imageList.forEach((img) => {
+    const urlImg = 'https://i.pinimg.com/originals/' + img.src.substring(26);
+    console.log(urlImg)
+    console.log(img.src.substring(36))
     request({
-      url : img.src,
+      url : urlImg,
       encoding : null
   }, function(error, response, body) {
-      const name = crypto.randomBytes(20).toString('hex');
-  
+      const name = img.src.substring(35,img.src.indexOf('.jpg'));
+      console.log(name.substring(img.src.lastIndexOf('/')));
       fs.writeFile('image downloads/' + name + '.png', body, {
           encoding : null
       }, function(err) {
@@ -56,7 +59,6 @@ async function startWithLogin(page) {
           if (err)
               throw err;
           console.log(name +'.png ' + 'It\'s saved!');
-          browser.close();
       });
   })
 });
