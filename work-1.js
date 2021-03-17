@@ -44,14 +44,11 @@ async function startWithLogin(page) {
 
   imageList.forEach((img) => {
     const urlImg = 'https://i.pinimg.com/originals/' + img.src.substring(26);
-    console.log(urlImg)
-    console.log(img.src.substring(36))
     request({
       url : urlImg,
       encoding : null
   }, function(error, response, body) {
       const name = img.src.substring(35,img.src.indexOf('.jpg'));
-      console.log(name.substring(img.src.lastIndexOf('/')));
       fs.writeFile('image downloads/' + name + '.png', body, {
           encoding : null
       }, function(err) {
